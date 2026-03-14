@@ -3,120 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ángel Arencibia | Portfolio</title>
+    <title>Ángel Arencibia | Software Developer | Ciberseguridad 🛡️</title>
+    <link rel="icon" href="https://img.icons8.com/neon/96/shield.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0d1117;
-            --text-color: #c9d1d9;
-            --neon-green: #00ff41;
-            --card-bg: #161b22;
+            --bg-deep: #0a0e14;
+            --bg-card: #11161d;
+            --accent: #00ff9f; /* Verde Cian Neón */
+            --accent-dim: #00cc7d;
+            --text-main: #e1e7ec;
+            --text-muted: #8b949e;
+            --nav-bg: rgba(10, 14, 20, 0.85);
+            --transition: all 0.3s ease;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+
+        /* --- Reset y Estilos Globales --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--font-main); background-color: var(--bg-deep); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        span.highlight { color: var(--accent); }
+
+        /* --- Animaciones --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: var(--accent); } }
+
+        /* --- Componentes --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 0; opacity: 0; animation: fadeIn 0.8s ease forwards; animation-delay: 0.2s; }
+        section:nth-child(even) { background-color: var(--bg-card); }
+        .section-title { font-size: 2.5rem; color: white; margin-bottom: 50px; border-left: 5px solid var(--accent); padding-left: 15px; font-family: var(--font-mono); }
+        .btn { display: inline-block; padding: 12px 30px; border: 2px solid var(--accent); color: var(--accent); font-weight: bold; border-radius: 5px; background: transparent; cursor: pointer; font-family: var(--font-mono); }
+        .btn:hover { background-color: rgba(0, 255, 159, 0.1); transform: translateY(-3px); }
+
+        /* --- Navegación --- */
+        nav { background-color: var(--nav-bg); padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #1a222c; backdrop-filter: blur(5px); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: white; font-family: var(--font-mono); }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 1rem; color: var(--text-muted); font-family: var(--font-mono); }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        /* --- Hero Section --- */
+        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at center, #111a24 0%, var(--bg-deep) 70%); padding-top: 100px; }
+        #hero h1 { font-size: 4rem; color: white; margin-bottom: 15px; font-family: var(--font-mono); }
+        #hero .typewriter { display: inline-block; overflow: hidden; border-right: .15em solid var(--accent); white-space: nowrap; margin: 0 auto; letter-spacing: .10em; font-size: 1.8rem; color: var(--accent); text-shadow: 0 0 10px rgba(0, 255, 159, 0.5); animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite; }
+        #hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 25px auto 40px; }
+        .hero-btns { display: flex; gap: 20px; }
+
+        /* --- Sobre mí --- */
+        .about-content { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; align-items: center; }
+        .about-text p { margin-bottom: 20px; font-size: 1.1rem; color: var(--text-main); }
+        .about-status { background-color: var(--bg-deep); padding: 30px; border-radius: 8px; border: 1px solid #1a222c; }
+        .status-item { margin-bottom: 20px; display: flex; align-items: flex-start; gap: 15px; }
+        .status-item i { color: var(--accent); font-size: 1.3rem; margin-top: 5px; }
+        .status-item h4 { color: white; font-size: 1.1rem; }
+        .status-item p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- Skills (Arsenal) --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .skill-category { background-color: var(--bg-deep); padding: 30px; border-radius: 8px; border: 1px solid #1a222c; transition: var(--transition); }
+        .skill-category:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+        .skill-category h3 { color: white; margin-bottom: 20px; font-size: 1.4rem; font-family: var(--font-mono); }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-item { background-color: rgba(0, 255, 159, 0.05); color: var(--accent); padding: 8px 15px; border-radius: 4px; font-size: 0.9rem; font-weight: bold; border: 1px solid rgba(0, 255, 159, 0.1); font-family: var(--font-mono); }
+
+        /* --- Proyectos --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .project-card { background-color: var(--bg-deep); padding: 30px; border-radius: 8px; border: 1px solid #1a222c; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+        .project-card h3 { color: white; margin-bottom: 10px; font-size: 1.4rem; }
+        .project-card p { color: var(--text-muted); margin-bottom: 20px; font-size: 1rem; flex-grow: 1; }
+        .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .project-tags span { background-color: #1a222c; color: var(--text-muted); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-family: var(--font-mono); }
+        .project-link { font-weight: bold; color: var(--accent); font-family: var(--font-mono); display: flex; align-items: center; gap: 8px; }
+        .project-link:hover { color: var(--accent-dim); }
+
+        /* --- Contacto --- */
+        .contact-content { text-align: center; }
+        .contact-text { max-width: 600px; margin: 0 auto 50px; font-size: 1.1rem; }
+        .contact-methods { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+        .contact-btn { display: flex; align-items: center; gap: 15px; background-color: var(--bg-deep); padding: 15px 30px; border-radius: 5px; width: 100%; max-width: 400px; border: 1px solid #1a222c; transition: var(--transition); }
+        .contact-btn:hover { border-color: var(--accent); background-color: #111a24; transform: scale(1.03); }
+        .contact-btn i { font-size: 1.8rem; width: 30px; text-align: center; }
+        .contact-btn.email i { color: #D14836; }
+        .contact-btn.linkedin i { color: #0077B5; }
+        .contact-btn.github i { color: white; }
+        .contact-btn div { text-align: left; }
+        .contact-btn h4 { color: white; font-size: 1.1rem; }
+        .contact-btn p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* --- Footer --- */
+        footer { background-color: #05070a; padding: 30px 0; text-align: center; color: var(--text-muted); border-top: 1px solid #1a222c; font-family: var(--font-mono); }
+
+        /* --- Responsivo --- */
+        @media (max-width: 900px) {
+            #hero h1 { font-size: 3rem; }
+            #hero .typewriter { font-size: 1.4rem; }
+            .about-content { grid-template-columns: 1fr; gap: 30px; }
+            .section-title { font-size: 2rem; }
         }
-        header {
-            text-align: center;
-            padding: 100px 20px;
-            border-bottom: 2px solid var(--neon-green);
-        }
-        h1 {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--neon-green);
-            text-shadow: 0 0 5px var(--neon-green);
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-        h2 {
-            border-left: 4px solid var(--neon-green);
-            padding-left: 10px;
-            color: white;
-        }
-        .skills-grid {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .skill-badge {
-            background-color: var(--card-bg);
-            border: 1px solid #30363d;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .skill-badge:hover {
-            border-color: var(--neon-green);
-            color: var(--neon-green);
-            transition: 0.3s;
-        }
-        .project-card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #30363d;
-        }
-        a {
-            color: var(--neon-green);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+        @media (max-width: 600px) {
+            #hero h1 { font-size: 2.2rem; }
+            #hero .typewriter { font-size: 1.1rem; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 0.9rem; }
+            .logo { font-size: 1.2rem; }
+            .hero-btns { flex-direction: column; gap: 10px; width: 100%; }
+            .hero-btns .btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Ángel Arencibia</h1>
-        <div class="subtitle">Junior Software Developer | Ciberseguridad 🛡️</div>
-        <p>Estudiante de 2º de DAM en prácticas (FCT)</p>
-    </header>
+    <nav>
+        <div class="nav-container">
+            <a href="#hero" class="logo">./&Aacute;ngel<span>.dev</span></a>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#sobre-mi">Perfil</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="container">
-        <section id="sobre-mi">
-            <h2>Sobre mí</h2>
-            <p>Desarrollador de software de Las Palmas de Gran Canaria. Me apasiona resolver problemas, el código limpio y estoy preparándome para dar el salto profesional hacia el mundo de la ciberseguridad y el hacking ético.</p>
-        </section>
+    <section id="hero">
+        <div class="container">
+            <h1>&Aacute;ngel Arencibia</h1>
+            <div class="typewriter">&gt; Software Developer // Futuro Especialista en Ciberseguridad</div>
+            <p>Estudiante de 2º de DAM en Las Palmas de Gran Canaria. Construyendo soluciones y preparándome para asegurar el entorno digital. 🛡️</p>
+            <div class="hero-btns">
+                <a href="#proyectos" class="btn">Ver Proyectos</a>
+                <a href="#contacto" class="btn">Contactar</a>
+            </div>
+        </div>
+    </section>
 
-        <section id="skills">
-            <h2>Stack Tecnológico</h2>
+    <section id="sobre-mi">
+        <div class="container">
+            <h2 class="section-title">01. Mi Perfil</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Soy un apasionado de la tecnología y la seguridad informática. Me encanta resolver problemas, encontrar fallos ocultos y escribir código limpio y eficiente. Originario de Las Palmas de Gran Canaria, me encuentro en la recta final de mi ciclo formativo superior.</p>
+                    <p>Mi enfoque actual es fusionar mis conocimientos de desarrollo de software con la seguridad, orientándome hacia la arquitectura de software seguro, el análisis de vulnerabilidades y el hacking ético.</p>
+                    <a href="https://www.linkedin.com/in/ángel-arencibia-matías-2a8541364" target="_blank" class="btn"><i class="fab fa-linkedin"></i> Ver LinkedIn Completo</a>
+                </div>
+                <div class="about-status">
+                    <div class="status-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <h4>Formaci&oacute;n</h4>
+                            <p>2º año DAM (Desarrollo de Aplicaciones Multiplataforma).</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h4>Situaci&oacute;n Actual</h4>
+                            <p>¡Realizando mis pr&aacute;cticas de FCT!</p>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Pr&oacute;ximo Objetivo</h4>
+                            <p>Especializaci&oacute;n en Ciberseguridad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="arsenal">
+        <div class="container">
+            <h2 class="section-title">02. Stack Tecnol&oacute;gico</h2>
             <div class="skills-grid">
-                <div class="skill-badge">Java</div>
-                <div class="skill-badge">JavaScript</div>
-                <div class="skill-badge">HTML5 & CSS3</div>
-                <div class="skill-badge">MySQL & SQL</div>
-                <div class="skill-badge">Git & GitHub</div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code highlight"></i> Lenguajes / Web</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">JavaScript (ES6+)</span>
+                        <span class="skill-item">HTML5</span>
+                        <span class="skill-item">CSS3</span>
+                        <span class="skill-item">XML</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database highlight"></i> Bases de Datos / Versiones</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">MySQL / MariaDB</span>
+                        <span class="skill-item">SQLite</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">GitHub</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools highlight"></i> Herramientas / IDEs</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">VS Code</span>
+                        <span class="skill-item">IntelliJ IDEA</span>
+                        <span class="skill-item">NetBeans</span>
+                        <span class="skill-item">Terminal Linux</span>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="proyectos">
-            <h2>Mis Proyectos</h2>
-            <div class="project-card">
-                <h3><a href="https://github.com/angelarencibia06" target="_blank">Proyecto Destacado DAM</a></h3>
-                <p>Aplicación desarrollada en Java y bases de datos MySQL. (Pronto añadiré más enlaces a mis repositorios).</p>
+    <section id="proyectos">
+        <div class="container">
+            <h2 class="section-title">03. Proyectos Destacados</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div>
+                        <h3>Proyecto Final DAM</h3>
+                        <p>Aplicación de gestión desarrollada en Java con backend en MySQL. Implementa autenticación segura y cifrado de datos básico.</p>
+                        <div class="project-tags">
+                            <span>Java</span>
+                            <span>MySQL</span>
+                            <span>Swing</span>
+                            <span>Seguridad</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/angelarencibia06" target="_blank" class="project-link"><i class="fab fa-github"></i> Ver Código</a>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h3>Simulación de Criptografía</h3>
+                        <p>Pequeño proyecto en JavaScript para entender y simular algoritmos simples de cifrado (César, Vigenère).</p>
+                        <div class="project-tags">
+                            <span>JavaScript</span>
+                            <span>HTML5</span>
+                            <span>Criptografía</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/angelarencibia06" target="_blank" class="project-link"><i class="fab fa-github"></i> Ver Código</a>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <p>📧 Email: <a href="mailto:arencibiamatias2006@gmail.com">arencibiamatias2006@gmail.com</a></p>
-            <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/ángel-arencibia-matías-2a8541364" target="_blank">Mi Perfil</a></p>
-        </section>
-    </div>
+    <section id="contacto">
+        <div class="container contact-content">
+            <h2 class="section-title">04. Contacto</h2>
+            <p class="contact-text">Si buscas a un desarrollador junior comprometido, con ganas de aprender y con una clara proyección hacia la ciberseguridad, ¡estaré encantado de conectar contigo!</p>
+            <div class="contact-methods">
+                <a href="mailto:arencibiamatias2006@gmail.com" class="contact-btn email">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Correo Electr&oacute;nico</h4>
+                        <p>arencibiamatias2006@gmail.com</p>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/ángel-arencibia-matías-2a8541364" target="_blank" class="contact-btn linkedin">
+                    <i class="fab fa-linkedin"></i>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <p> conectar con &Aacute;ngel Arencibia</p>
+                    </div>
+                </a>
+                <a href="https://github.com/angelarencibia06" target="_blank" class="contact-btn github">
+                    <i class="fab fa-github"></i>
+                    <div>
+                        <h4>GitHub</h4>
+                        <p>@angelarencibia06</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 
+    <footer>
+        <div class="container">
+            <p>&gt; &copy; 2026 &Aacute;ngel Arencibia. Hecho con HTML, CSS y cafe&iacute;na.</p>
+        </div>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

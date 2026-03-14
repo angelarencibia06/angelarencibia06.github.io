@@ -74,17 +74,6 @@
         .skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
         .skill-item { background-color: rgba(0, 255, 159, 0.05); color: var(--accent); padding: 8px 15px; border-radius: 4px; font-size: 0.9rem; font-weight: bold; border: 1px solid rgba(0, 255, 159, 0.1); font-family: var(--font-mono); }
 
-        /* --- Proyectos --- */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .project-card { background-color: var(--bg-deep); padding: 30px; border-radius: 8px; border: 1px solid #1a222c; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
-        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
-        .project-card h3 { color: white; margin-bottom: 10px; font-size: 1.4rem; }
-        .project-card p { color: var(--text-muted); margin-bottom: 20px; font-size: 1rem; flex-grow: 1; }
-        .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-        .project-tags span { background-color: #1a222c; color: var(--text-muted); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-family: var(--font-mono); }
-        .project-link { font-weight: bold; color: var(--accent); font-family: var(--font-mono); display: flex; align-items: center; gap: 8px; }
-        .project-link:hover { color: var(--accent-dim); }
-
         /* --- Contacto --- */
         .contact-content { text-align: center; }
         .contact-text { max-width: 600px; margin: 0 auto 50px; font-size: 1.1rem; }
@@ -128,7 +117,7 @@
             <ul class="nav-links">
                 <li><a href="#hero">Inicio</a></li>
                 <li><a href="#sobre-mi">Perfil</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#arsenal">Stack</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </div>
@@ -140,7 +129,7 @@
             <div class="typewriter">&gt; Software Developer // Futuro Especialista en Ciberseguridad</div>
             <p>Estudiante de 2º de DAM en Las Palmas de Gran Canaria. Construyendo soluciones y preparándome para asegurar el entorno digital. 🛡️</p>
             <div class="hero-btns">
-                <a href="#proyectos" class="btn">Ver Proyectos</a>
+                <a href="#arsenal" class="btn">Ver Stack Tecnol&oacute;gico</a>
                 <a href="#contacto" class="btn">Contactar</a>
             </div>
         </div>
@@ -219,42 +208,9 @@
         </div>
     </section>
 
-    <section id="proyectos">
-        <div class="container">
-            <h2 class="section-title">03. Proyectos Destacados</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div>
-                        <h3>Proyecto Final DAM</h3>
-                        <p>Aplicación de gestión desarrollada en Java con backend en MySQL. Implementa autenticación segura y cifrado de datos básico.</p>
-                        <div class="project-tags">
-                            <span>Java</span>
-                            <span>MySQL</span>
-                            <span>Swing</span>
-                            <span>Seguridad</span>
-                        </div>
-                    </div>
-                    <a href="https://github.com/angelarencibia06" target="_blank" class="project-link"><i class="fab fa-github"></i> Ver Código</a>
-                </div>
-                <div class="project-card">
-                    <div>
-                        <h3>Simulación de Criptografía</h3>
-                        <p>Pequeño proyecto en JavaScript para entender y simular algoritmos simples de cifrado (César, Vigenère).</p>
-                        <div class="project-tags">
-                            <span>JavaScript</span>
-                            <span>HTML5</span>
-                            <span>Criptografía</span>
-                        </div>
-                    </div>
-                    <a href="https://github.com/angelarencibia06" target="_blank" class="project-link"><i class="fab fa-github"></i> Ver Código</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="contacto">
         <div class="container contact-content">
-            <h2 class="section-title">04. Contacto</h2>
+            <h2 class="section-title">03. Contacto</h2>
             <p class="contact-text">Si buscas a un desarrollador junior comprometido, con ganas de aprender y con una clara proyección hacia la ciberseguridad, ¡estaré encantado de conectar contigo!</p>
             <div class="contact-methods">
                 <a href="mailto:arencibiamatias2006@gmail.com" class="contact-btn email">
@@ -268,7 +224,7 @@
                     <i class="fab fa-linkedin"></i>
                     <div>
                         <h4>LinkedIn</h4>
-                        <p> conectar con &Aacute;ngel Arencibia</p>
+                        <p>Conectar con &Aacute;ngel Arencibia</p>
                     </div>
                 </a>
                 <a href="https://github.com/angelarencibia06" target="_blank" class="contact-btn github">
